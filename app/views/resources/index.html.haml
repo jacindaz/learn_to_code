@@ -1,5 +1,14 @@
 %h3 Learn to Code!
+%hr
 
-%ul
+
+%div
 - @resources.each do |resource|
-  %li= link_to resource.url, resource.url, target: '_blank'
+  .box
+    .row
+      .col-md-8.col-xs-8
+        %h4= link_to resource.title, resource.url, target: '_blank'
+      .col-md-4.col-xs-4
+        %h5{style: 'text-align: right;'}= "#{resource.language.camelcase}, #{resource.free ? "Free" : "Not free"}"
+    .row{style: 'margin-left: 2px; margin-right: 2px;'}
+      %p= resource.description
