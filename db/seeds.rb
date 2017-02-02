@@ -8,6 +8,7 @@
 
 resources = [
   {
+    title: 'Learn to Program by Chris Pine',
     url: "https://pragprog.com/titles/ltp2/learn-to-program-2nd-edition",
     language: "ruby",
     framework: nil,
@@ -15,6 +16,7 @@ resources = [
     description: "This is a great resource if you are starting from ground zero, and want to learn to code. This book only covers Ruby, and doesn't talk about Rails or any concepts related to web development."
   },
   {
+    title: 'Codecademy - Ruby',
     url: "https://www.codecademy.com/learn/ruby",
     language: "ruby",
     framework: nil,
@@ -22,6 +24,7 @@ resources = [
     description: "This is a great resource if reading books are harder for you to consume. Codecademy provides a combination of teaching a concept, plus short, interactive practice problems. It's a great place to start, but gives you less depth in your learning than other resources."
   },
   {
+    title: 'Ruby Monk',
     url: "https://rubymonk.com/",
     language: "ruby",
     framework: nil,
@@ -29,6 +32,7 @@ resources = [
     description: "Ruby Monk is a great balance of teaching concepts, but also providing examples. There aren't practice problems, but they do provide the ability for you to run examples, which is useful for experimenting."
   },
   {
+    title: 'Intro to Computer Science - MITx',
     url: "https://www.edx.org/course/introduction-computer-science-mitx-6-00-1x-9",
     language: "python",
     framework: nil,
@@ -39,6 +43,7 @@ resources = [
 
 resources.each do |r|
   Resource.create!(
+    title: r[:title],
     url: r[:url],
     language: r[:language],
     framework: r[:framework],
