@@ -1,24 +1,7 @@
-# README
+# Resources for learning to code
+This is a list that I've slowly compiled, and will be continuing to vet.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### To Do's
+ * look at money-rails and money gems to figure out how to handle currency
+ * how to test and make sure links aren't broken?
+ * scraping or API integration to find new resources, without manually adding them
