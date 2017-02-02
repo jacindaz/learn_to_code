@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20170202062259) do
   enable_extension "plpgsql"
 
   create_table "resources", force: :cascade do |t|
+    t.string   "title",       null: false
     t.string   "url",         null: false
     t.string   "language"
     t.string   "framework"
