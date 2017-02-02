@@ -1,0 +1,5 @@
+%h3 Learn to Code!
+
+%ul
+- @resources.each do |resource|
+  %li= link_to resource.url, resource.url, target: '_blank'
