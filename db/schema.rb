@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202062259) do
+ActiveRecord::Schema.define(version: 20170206165357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170202062259) do
     t.string   "language"
     t.string   "framework"
     t.boolean  "free"
-    t.text     "description"
+    t.text     "description", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["language"], name: "index_resources_on_language", using: :btree
