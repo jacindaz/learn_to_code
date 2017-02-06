@@ -1,3 +1,8 @@
+.box_with_border {
+  @extend .box_with_padding_margin;
+  border: 1px solid gray;
+}
+
 .box_with_padding_margin {
   margin-bottom: 10px;
   padding: 10px;
