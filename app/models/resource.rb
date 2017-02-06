@@ -1,5 +1,9 @@
 class Resource < ApplicationRecord
-  validates :language, inclusion: { in: ["ruby", "python", "sql", "javascript", "java", "c", "clojure", "haskell", "elixir"] }
+  LANGUAGES = ["ruby", "python", "sql", "javascript", "java", "c", "clojure", "haskell", "elixir"]
+  TECHNOLOGIES = ["django", "rails", "spring", "phoenix", "react", "angular", "backbone", "ember", "sinatra", "aws"]
+
+  validates :language, inclusion: { in: LANGUAGES }
+  validates :tech, inclusion: { in: TECHNOLOGIES }
   validates :title, presence: true
   validates :url, presence: true
   validates :description, presence: true
