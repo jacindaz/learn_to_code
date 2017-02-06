@@ -1,0 +1,34 @@
+= form_for @resource do |f|
+  .row
+    .box_with_padding_margin
+      .col-1.col-md-1= f.label :title
+      .col-11.col-md-11= f.text_field :title
+
+  .row
+    .box_with_padding_margin
+      .col-1.col-md-1= f.label :url
+      .col-11.col-md-11= f.text_field :url
+
+  .row
+    .box_with_padding_margin
+      .col-1.col-md-1= f.label :language
+      .col-11.col-md-11= f.select :language, Resource::LANGUAGES.map{ |l| l.capitalize }, include_blank: true
+
+  .row
+    .box_with_padding_margin
+      .col-1.col-md-1= f.label :framework
+      .col-11.col-md-11= f.text_field :framework
+
+  .row
+    .box_with_padding_margin
+      .col-1.col-md-1= f.label :free
+      .col-11.col-md-11= f.check_box :free, {}, true, false
+
+  .row
+    .box_with_padding_margin
+      .col-1.col-md-1= f.label :description
+      .col-11.col-md-11= f.text_area :description, cols: 50, rows: 5
+
+  .row
+    .box_with_padding_margin
+      = f.submit 'Create'
