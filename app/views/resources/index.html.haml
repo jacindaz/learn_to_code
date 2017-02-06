@@ -19,11 +19,12 @@
 %h3 Resources for ya
 %div
 - @resources.each do |resource|
-  .box
+  .box_with_border
     .row
       .col-md-8.col-xs-8
-        %h4= link_to resource.title, resource.url, target: '_blank'
+        %h4= link_to resource.title, resource_path(resource)
       .col-md-4.col-xs-4
         %h5{style: 'text-align: right;'}= "#{resource.language.camelcase}, #{resource.free ? "Free" : "Not free"}"
     .row{style: 'margin-left: 2px; margin-right: 2px;'}
       %p= resource.description
+      %p= link_to resource.url, resource.url, target: '_blank'
