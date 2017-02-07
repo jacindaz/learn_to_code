@@ -37,6 +37,18 @@ describe ResourcesController, type: :controller do
     end
 
     it "does not create a new resource when validations are not met" do
+      expect {
+        post :create, params: { resource:
+          {
+            title: 'Resource title',
+            url: 'somefakeresource.com',
+            language: 'rubiee',
+            tech: 'rails',
+            free: true,
+            description: 'this should fail validations since rubiee is not a whitelisted language.'
+          }
+        }
+      }.to change(Resource, :count).by(0)
     end
   end
 end
