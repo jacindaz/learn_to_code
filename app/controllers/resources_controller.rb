@@ -14,7 +14,7 @@ class ResourcesController < ApplicationController
   def create
     @resource = Resource.new(resource_params)
     @resource.language = @resource.language.downcase
-    @resource.framework = @resource.framework.downcase
+    @resource.tech = @resource.tech.downcase
 
     if @resource.save
       flash[:message] = 'Resource saved!'
@@ -34,6 +34,6 @@ class ResourcesController < ApplicationController
   private
 
   def resource_params
-    params.require(:resource).permit(:title, :url, :language, :framework, :free, :description)
+    params.require(:resource).permit(:title, :url, :language, :tech, :free, :description)
   end
 end
