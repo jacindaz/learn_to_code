@@ -63,4 +63,25 @@ describe ResourcesController, type: :controller do
       expect(response).to redirect_to(saved_resource)
     end
   end
+
+  describe "SHOW action" do
+    it "should render the resources#show action" do
+      r1 = create(:resource)
+      r2 = create(:resource)
+      r3 = create(:resource)
+      get :show, { id: r2.to_param }
+      expect(assigns(:resource)).to eq(r2)
+    end
+  end
+
+  describe "EDIT action" do
+    it "renders the edit page" do
+    end
+  end
+
+  describe "UPDATE action" do
+  end
+
+  describe "DESTROY action" do
+  end
 end
