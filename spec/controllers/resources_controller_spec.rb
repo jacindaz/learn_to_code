@@ -34,6 +34,11 @@ describe ResourcesController, type: :controller do
       expect {
         post :create, params: { resource: @new_resource_attributes }
       }.to change(Resource, :count).by(1)
+      expect(assigns(:resource)).to be_persisted
+    end
+
+    it "persists the Resource" do
+      post :create, params: { resource: @new_resource_attributes }
     end
 
     it "does not create a new resource when validations are not met" do
@@ -49,6 +54,13 @@ describe ResourcesController, type: :controller do
           }
         }
       }.to change(Resource, :count).by(0)
+    end
+
+    it "should redirect to resources#show" do
+      post :create, params: { resource: @new_resource_attributes }
+
+      saved_resource = Resource.where(@new_resource_attributes).first
+      expect(response).to redirect_to(saved_resource)
     end
   end
 end
