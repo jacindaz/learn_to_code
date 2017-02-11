@@ -26,9 +26,7 @@ describe ResourcesController, type: :controller do
   end
 
   describe "CREATE action" do
-    before(:each) do
-      @new_resource_attributes = FactoryGirl.attributes_for(:resource)
-    end
+    let(:new_resource_attributes) { FactoryGirl.attributes_for(:resource) }
 
     it "creates a new resource when validations are met" do
       expect {
@@ -66,6 +64,11 @@ describe ResourcesController, type: :controller do
 
   describe "SHOW action" do
     it "should render the resources#show action" do
+      get :show, params: { id: create(:resource).to_param }
+      expect(response).to render_template(:show)
+    end
+
+    it "should assign the correct resource object" do
       r1 = create(:resource)
       r2 = create(:resource)
       r3 = create(:resource)
