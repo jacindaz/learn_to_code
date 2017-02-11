@@ -79,6 +79,8 @@ describe ResourcesController, type: :controller do
 
   describe "EDIT action" do
     it "renders the edit page" do
+      get :edit, params: { id: create(:resource).to_param }
+      expect(response).to render_template(:edit)
     end
   end
 
