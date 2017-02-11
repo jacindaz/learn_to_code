@@ -1,7 +1,7 @@
 %h3= @resource.title
 %hr
 
-%h5= "#{@resource.language.camelcase}, #{@resource.free ? "Free" : "Not free"}"
+%h5= "#{@resource.language.camelcase}, #{@resource.tech ? @resource.tech.camelcase + "," : nil} #{@resource.free ? "Free" : "Not free"}"
 
 %p= @resource.description
 %p= link_to @resource.url, @resource.url, target: '_blank'
