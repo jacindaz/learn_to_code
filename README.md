@@ -7,6 +7,7 @@ This is a list that I've slowly compiled, and will be continuing to vet.
  * scraping or API integration to find new resources, without manually adding them
 
 ### Tech To Do's
+ * set up codeship again for CI to run tests
  * add capybara for integration testing
  * DatabaseCleaner: https://github.com/DatabaseCleaner/database_cleaner
 
