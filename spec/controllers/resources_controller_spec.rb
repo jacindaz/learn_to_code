@@ -45,10 +45,6 @@ describe ResourcesController, type: :controller do
       expect(assigns(:resource)).to be_persisted
     end
 
-    it "persists the Resource" do
-      post :create, params: { resource: valid_resource_attributes }
-    end
-
     it "does not create a new resource when validations are not met" do
       expect {
         post :create, params: { resource: invalid_resource_attributes }
@@ -84,6 +80,7 @@ describe ResourcesController, type: :controller do
       put :update, params: { id: resource.id, resource: { title: "New Resource Title" } }
 
       expect(resource.reload.title).to eq("New Resource Title")
+      expect(response).to redirect_to(resource)
     end
   end
 
