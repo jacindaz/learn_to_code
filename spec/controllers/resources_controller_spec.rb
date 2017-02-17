@@ -30,13 +30,13 @@ describe ResourcesController, type: :controller do
 
     it "creates a new resource when validations are met" do
       expect {
-        post :create, params: { resource: @new_resource_attributes }
+        post :create, params: { resource: new_resource_attributes }
       }.to change(Resource, :count).by(1)
       expect(assigns(:resource)).to be_persisted
     end
 
     it "persists the Resource" do
-      post :create, params: { resource: @new_resource_attributes }
+      post :create, params: { resource: new_resource_attributes }
     end
 
     it "does not create a new resource when validations are not met" do
@@ -55,9 +55,9 @@ describe ResourcesController, type: :controller do
     end
 
     it "should redirect to resources#show" do
-      post :create, params: { resource: @new_resource_attributes }
+      post :create, params: { resource: new_resource_attributes }
 
-      saved_resource = Resource.where(@new_resource_attributes).first
+      saved_resource = Resource.where(new_resource_attributes).first
       expect(response).to redirect_to(saved_resource)
     end
   end
@@ -78,9 +78,20 @@ describe ResourcesController, type: :controller do
   end
 
   describe "EDIT action" do
-    it "renders the edit page" do
-      get :edit, params: { id: create(:resource).to_param }
+    it "renders the edit view" do
+      resource = create(:resource)
+      get :edit, params: { id: resource.id.to_param }
+
+      # why does this not fail??
+      # binding.pry
+      # even when I look for a Resource that
+      # does not exist, and fails to render,
+      # this test still passes. why????
+      # = Resource.find(1).title
+
       expect(response).to render_template(:edit)
+      expect(response.status).to eq(200)
+      expect(assigns(:resource)).to eq(resource)
     end
   end
 
@@ -90,3 +101,4 @@ describe ResourcesController, type: :controller do
   describe "DESTROY action" do
   end
 end
+
