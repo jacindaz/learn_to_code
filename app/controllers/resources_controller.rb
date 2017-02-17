@@ -14,7 +14,7 @@ class ResourcesController < ApplicationController
   def create
     @resource = Resource.new(resource_params)
     @resource.language = @resource.language.downcase
-    @resource.tech = @resource.tech.downcase
+    @resource.tech = @resource.tech.blank? ? nil : @resource.tech.downcase
 
     if @resource.save
       flash[:message] = 'Resource saved!'
