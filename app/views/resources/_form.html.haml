@@ -1,3 +1,11 @@
+- if @resource.errors.messages.any?
+  .error_box
+    %h5 Errors:
+    %ul
+    - @resource.errors.messages.each do |error_key, error_message|
+      %li= "#{error_key.capitalize} #{error_message.first}"
+
+
 = form_for @resource do |f|
   .row
     .box_with_padding_margin
