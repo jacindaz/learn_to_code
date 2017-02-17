@@ -38,7 +38,6 @@ describe ResourcesController, type: :controller do
   end
 
   describe "CREATE action" do
-
     it "creates a new resource when validations are met" do
       expect {
         post :create, params: { resource: valid_resource_attributes }
@@ -80,20 +79,11 @@ describe ResourcesController, type: :controller do
   end
 
   describe "EDIT action" do
-    it "renders the edit view" do
-      resource = create(:resource)
-      get :edit, params: { id: resource.id.to_param }
+    it "updates the Resource" do
+      resource = create(:resource, title: "Old Resource Title")
+      put :update, params: { id: resource.id, resource: { title: "New Resource Title" } }
 
-      # why does this not fail??
-      # binding.pry
-      # even when I look for a Resource that
-      # does not exist, and fails to render,
-      # this test still passes. why????
-      # = Resource.find(1).title
-
-      expect(response).to render_template(:edit)
-      expect(response.status).to eq(200)
-      expect(assigns(:resource)).to eq(resource)
+      expect(resource.reload.title).to eq("New Resource Title")
     end
   end
 
