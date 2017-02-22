@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
   skip_before_action :require_login, only: [:new, :create], raise: false
 
-  def new
-  end
+  def new; end
 
   def create
     user = authenticate_session(session_params)

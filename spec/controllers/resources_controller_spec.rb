@@ -2,16 +2,18 @@ require 'rails_helper'
 
 describe ResourcesController, type: :controller do
   let(:valid_resource_attributes) { FactoryGirl.attributes_for(:resource) }
-  let(:invalid_resource_attributes) {
+  let(:invalid_resource_attributes) do
     {
       title: "Invalid Resource",
       url: "www.invalidresource.com",
       free: false,
       language: "fake language",
       tech: "fake tech",
-      description: "this is an invalid resource, since the language and tech are not in the pre-determined list."
+      description: "this is an invalid resource, since \
+                    the language and tech are not in \
+                    the pre-determined list."
     }
-  }
+  end
 
   describe "GET index" do
     it "assigns @resources" do
@@ -77,7 +79,9 @@ describe ResourcesController, type: :controller do
   describe "EDIT action" do
     it "updates the Resource" do
       resource = create(:resource, title: "Old Resource Title")
-      put :update, params: { id: resource.id, resource: { title: "New Resource Title" } }
+      params = { id: resource.id, resource: { title: "New Resource Title" } }
+
+      put :update, params: params
 
       expect(resource.reload.title).to eq("New Resource Title")
       expect(response).to redirect_to(resource)
@@ -90,4 +94,3 @@ describe ResourcesController, type: :controller do
   describe "DESTROY action" do
   end
 end
-

@@ -17,7 +17,6 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-
   # Need to use database_cleaner since capybara creates a 2nd thread
   # to run the webserver and simulate browser activity.
   # the 2nd thread means that if your capybara webserver is creating
@@ -87,7 +86,7 @@ RSpec.configure do |config|
     # Use the documentation formatter for detailed output,
     # unless a formatter has already been configured
     # (e.g. via a command-line flag).
-    config.default_formatter = 'doc'
+    config.default_formatter = "doc"
   end
 
   # Seed global randomization in this process using the `--seed` CLI option.

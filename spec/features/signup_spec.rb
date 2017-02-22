@@ -1,7 +1,7 @@
 require "rails_helper"
 
-feature 'Sign up' do
-  scenario 'user can sign up' do
+feature "Sign up" do
+  scenario "user can sign up" do
     visit root_path
     click_link "Sign up"
     expect(current_path).to eq(new_user_path)
