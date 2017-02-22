@@ -17,6 +17,28 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+
+  # Need to use database_cleaner since capybara creates a 2nd thread
+  # to run the webserver and simulate browser activity.
+  # the 2nd thread means that if your capybara webserver is creating
+  # database objects, that they are not created within 1 transaction,
+  # so the transaction cannot be rolled back, and the objects will
+  # still exist after your test is complete.
+  # Instead, database_cleaner uses database truncation:
+  # truncation is droping everything from a table and reseting
+  # sequence counters (like for primary keys)
+  # https://github.com/DatabaseCleaner/database_cleaner#rspec-example
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
