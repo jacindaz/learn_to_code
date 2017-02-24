@@ -28,6 +28,14 @@
     </div>
 
     <hr>
+
+    <h4>
+      <% flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, class: name %>
+      <% end -%>
+    </h4>
+    <br>
+
     <%= yield %>
   </body>
 </html>
