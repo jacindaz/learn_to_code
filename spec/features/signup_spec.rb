@@ -53,3 +53,17 @@ feature "Signing in" do
     expect(page).to have_content("incorrect")
   end
 end
+
+feature "Signing out" do
+  scenario "user can sign out" do
+    email = "testingsignout@test.com"
+    Monban.config.sign_up_service.new(email: email, password: "sign_out").perform
+    sign_in(User.where(email: email).first)
+
+    visit root_path
+    expect(page).to have_content(email)
+
+    click_link "Sign out"
+    expect(page).to_not have_content(email)
+  end
+end
