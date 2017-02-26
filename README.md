@@ -15,3 +15,8 @@ This is a list that I've slowly compiled, and will be continuing to vet.
 ### Resources to add
  * ones from my doc
  * from here: https://www.meetup.com/Women-Who-Code-SF/events/236716206/
+
+### Read these
+ * http://mattwarren.org/2014/11/01/the-stack-overflow-tag-engine-part-1/
+ * http://nickcraver.com/blog/2016/02/17/stack-overflow-the-architecture-2016-edition/
+  * https://blog.codinghorror.com/performance-is-a-feature/
