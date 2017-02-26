@@ -1,3 +1,5 @@
+[ ![Codeship Status for jacindaz/learn_to_code](https://app.codeship.com/projects/0a218900-d880-0134-06ff-228cb92263ec/status?branch=master)](https://app.codeship.com/projects/203214)
+
 # Resources for learning to code
 This is a list that I've slowly compiled, and will be continuing to vet.
 
