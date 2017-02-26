@@ -1,23 +1,23 @@
 $error_color: #EE1133;
 
-.box_with_border {
-  @extend .box_with_padding_margin;
+.box-with-border {
+  @extend .box-with-padding-margin;
   border: 1px solid gray;
 }
 
-.box_with_padding_margin {
+.box-with-padding-margin {
   margin-bottom: 10px;
   padding: 10px;
 }
 
-.error_box {
+.error-box {
   border: 1px solid $error_color;
   padding: 20px;
   margin: 5px;
   color: $error_color;
 }
 
-a.resource_tag_button {
+a.resource-tag-button {
   color: white !important;
 }
-.tag_font_size{ font-size: .8em; }
+.tag-font-size{ font-size: 0.8em; }
