@@ -14,7 +14,6 @@ feature "User views resource tags" do
 end
 
 feature "User adds tag to resource" do
-
   scenario "user can add tags" do
   end
 
