@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
   skip_before_action :require_login, only: [:new, :create], raise: false
 
-  def new
-  end
+  def new; end
 
   def create
     user = authenticate_session(session_params)
@@ -10,6 +11,7 @@ class SessionsController < ApplicationController
     if sign_in(user)
       redirect_to root_path
     else
+      flash[:error] = "Username or password incorrect."
       render :new
     end
   end

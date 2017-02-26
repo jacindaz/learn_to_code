@@ -17,6 +17,27 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  # Need to use database_cleaner since capybara creates a 2nd thread
+  # to run the webserver and simulate browser activity.
+  # the 2nd thread means that if your capybara webserver is creating
+  # database objects, that they are not created within 1 transaction,
+  # so the transaction cannot be rolled back, and the objects will
+  # still exist after your test is complete.
+  # Instead, database_cleaner uses database truncation:
+  # truncation is droping everything from a table and reseting
+  # sequence counters (like for primary keys)
+  # https://github.com/DatabaseCleaner/database_cleaner#rspec-example
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
@@ -58,6 +79,22 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = :random
 
+  # Many RSpec users commonly either run the entire suite or an individual
+  # file, and it's useful to allow more verbose output when running an
+  # individual spec file.
+  if config.files_to_run.one?
+    # Use the documentation formatter for detailed output,
+    # unless a formatter has already been configured
+    # (e.g. via a command-line flag).
+    config.default_formatter = "doc"
+  end
+
+  # Seed global randomization in this process using the `--seed` CLI option.
+  # Setting this allows you to use `--seed` to deterministically reproduce
+  # test failures related to randomization by passing the same `--seed` value
+  # as the one that triggered the failure.
+  Kernel.srand config.seed
+
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin
@@ -79,21 +116,5 @@ RSpec.configure do |config|
   #   - http://www.teaisaweso.me/blog/2013/05/27/rspecs-new-message-expectation-syntax/
   #   - http://rspec.info/blog/2014/05/notable-changes-in-rspec-3/#zero-monkey-patching-mode
   config.disable_monkey_patching!
-
-  # Many RSpec users commonly either run the entire suite or an individual
-  # file, and it's useful to allow more verbose output when running an
-  # individual spec file.
-  if config.files_to_run.one?
-    # Use the documentation formatter for detailed output,
-    # unless a formatter has already been configured
-    # (e.g. via a command-line flag).
-    config.default_formatter = 'doc'
-  end
-
-  # Seed global randomization in this process using the `--seed` CLI option.
-  # Setting this allows you to use `--seed` to deterministically reproduce
-  # test failures related to randomization by passing the same `--seed` value
-  # as the one that triggered the failure.
-  Kernel.srand config.seed
 =end
 end

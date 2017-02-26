@@ -1,4 +1,4 @@
-$error_color: #EE1133;
+$error-color: #ee1133;
 
 .box_with_border {
   @extend .box_with_padding_margin;
@@ -10,9 +10,9 @@ $error_color: #EE1133;
   padding: 10px;
 }
 
-.error_box {
-  border: 1px solid $error_color;
-  padding: 20px;
+.error-box {
+  border: 1px solid $error-color;
+  color: $error-color;
   margin: 5px;
-  color: $error_color;
+  padding: 20px;
 }
