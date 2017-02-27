@@ -1,0 +1,4 @@
+%div{ style: "margin-top: 2%;" }
+  - tags.each do |tag|
+    %button.btn.btn-info.tag-font-size
+      = link_to tag, resource_path(resource), class: "resource-tag-button"
