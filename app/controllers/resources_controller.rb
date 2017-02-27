@@ -1,6 +1,10 @@
 class ResourcesController < ApplicationController
   def index
-    @resources = Resource.all
+    if params[:tag]
+      @resources = Resource.tagged_with(params[:tag])
+    else
+      @resources = Resource.all
+    end
   end
 
   def show
