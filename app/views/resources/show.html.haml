@@ -7,3 +7,12 @@
 %p= link_to @resource.url, @resource.url, target: '_blank'
 
 = render partial: "tags", locals: { tags: @resource.tag_list, resource: @resource }
+
+.ui-widget{ style: "margin-top: 20px;" }
+  %label Tags
+  %input.tags-autocomplete
+
+:javascript
+  $(".tags-autocomplete").autocomplete({
+    source: ["testtag1", "testtag2"]
+  });
