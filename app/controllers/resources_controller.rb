@@ -45,6 +45,10 @@ class ResourcesController < ApplicationController
     end
   end
 
+  def tags_autocomplete
+    render json: Tag.select(:name).map(&:name)
+  end
+
   private
 
   def resource_params
