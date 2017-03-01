@@ -1,6 +1,10 @@
 class ResourcesController < ApplicationController
   def index
-    @resources = Resource.all
+    if params[:tag]
+      @resources = Resource.tagged_with(params[:tag])
+    else
+      @resources = Resource.all
+    end
   end
 
   def show
@@ -41,10 +45,14 @@ class ResourcesController < ApplicationController
     end
   end
 
+  def tags_autocomplete
+    render json: Tag.select(:name).map(&:name)
+  end
+
   private
 
   def resource_params
-    params.require(:resource).permit(:title, :url, :language, :tech, :free, :description)
+    params.require(:resource).permit(:title, :url, :language, :tech, :free, :description, :tag_list)
   end
 
   def resource_cleanup
